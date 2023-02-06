@@ -289,6 +289,13 @@ namespace Youtube_Viewers
                     {
                         req.UserAgentRandomize();
                         req.Cookies.Container.Add(new Uri("https://www.youtube.com"), new Cookie("CONSENT", "YES+cb.20210629-13-p0.en+FX+407"));
+                        
+                         CookieContainer cookies = new CookieContainer();
+
+            // Add multiple cookies to the container
+            cookies.Add(new Uri("https://www.example.com"), new Cookie("cookie_name1", "cookie_value1"));
+            cookies.Add(new Uri("https://www.example.com"), new Cookie("cookie_name2", "cookie_value2"));
+            cookies.Add(new Uri("https://www.example.com"), new Cookie("cookie_name3", "cookie_value3"));
 
                         var sres = req.Get($"https://www.youtube.com/watch?v={id}").ToString();
                         var viewersTemp = string.Join("", RegularExpressions.Viewers.Match(sres).Groups[1].Value.Where(char.IsDigit));
